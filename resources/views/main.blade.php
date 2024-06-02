@@ -18,6 +18,14 @@
     <link rel="stylesheet" href="{{ asset('style/assets/css/cs-skin-elastic.css') }}">
     <link rel="stylesheet" href="{{ asset('style/assets/scss/style.css') }}">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
+    @yield('css')
+    <style>
+        #inventoryGudangChart {
+            display: block;
+            width: 100% !important;
+            height: auto !important;
+        }
+    </style>
 </head>
 
 <body>
@@ -52,13 +60,16 @@
                     <li>
                         <a href="/tambahdata"> <i class="menu-icon fa fa-plus-square"></i>Tambah Data</a>
                     </li>
+                    <li>
+                        <a href="/laporan"> <i class="menu-icon fa fa-book"></i>Laporan</a>
+                    </li>
                     @if (auth()->user()->role == "admin")
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false"> <i class="menu-icon fa fa-briefcase"></i>Manajemen</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa-archive"></i><a href="/inventory">Manajemen Inventory</a></li>
-                            <li><i class="fa fa-building-o"></i><a href="/deskripsi">Manajemen Gudang</a></li>
+                            <li><i class="fa fa-archive"></i><a href="/inventory">Transaksi Gudang</a></li>
+                            <li><i class="fa fa-building-o"></i><a href="/deskripsi">Master Gudang</a></li>
                         </ul>
                     </li>
                     @endif
@@ -76,7 +87,6 @@
                 {{-- <link rel="website icon" type="png" --}}
                 {{-- href="https://www.telkom.co.id/data/image_upload/page/1594112895830_compress_PNG%20Icon%20Telkom.png">
                         <i class="fa fa-tasks"></i> --}}
-
                 <div class="col-sm-5">
                     <div class="user-area dropdown float-right">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
@@ -111,6 +121,8 @@
         @yield('content')
 
         @yield('ckeditor')
+
+        @yield('scripts')
 
     </div>
 

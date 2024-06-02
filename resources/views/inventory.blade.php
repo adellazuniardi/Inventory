@@ -37,7 +37,7 @@
                                         {{-- <label for="Filter" class="col-md-2 col-form-label text-md-right">Gudang</label> --}}
                                         <div class="col-auto">
                                             <select id="gudang" class="form-control" name="gudang">
-                                                <option disable value>Gudang</option>
+                                                <option disable hidden>Gudang</option>
                                                 @foreach ($gud as $item)
                                                     <option
                                                         value="{{ $item->id }}"{{ old('gudang') == $item->gudang ? 'selected' : '' }}>
@@ -57,15 +57,20 @@
                                         <div class="input-group">
                                             <input type="search" class="form-control" name="search" id=""
                                                 placeholder="Cari Barang">
-                                            <button type="submit" class="btn btn-secondary rounded ml-2"><i
-                                                    class="fa fa-search"></i></button>
+                                            {{-- <button type="submit" class="btn btn-secondary rounded ml-2"><i
+                                                    class="fa fa-search"></i></button> --}}
                                             {{-- <div class="input-group-addon"><i class="fa fa-search"></i></div> --}}
                                         </div>
                                     </form>
                                 </div>
                             </div>
-                            <div class="col-auto">
-                                <table class="table table-bordered ml-1 mr-2">
+                            {{-- <div class="form-group">
+                                <label for="tanggal_masuk">Tanggal Masuk</label>
+                                <input type="date" name="tanggal_masuk" placeholder="Tanggal Masuk"
+                                id="tanggal_masuk" class="form-control" value="{{ request('tanggal_masuk') }}">
+                            </div> --}}
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
                                     <thead class="thead-dark">
                                         <tr>
                                             <th scope="col">#</th>
@@ -87,14 +92,21 @@
                                                 <th scope="row">{{ $index + $data->firstItem() }}</th>
                                                 <td>{{ $row->namabarang }}</td>
                                                 <td>{{ $row->gudang->gudang }}</td>
-                                                <td>{{ $row->tanggal_masuk }}</td>
-                                                <td>{{ $row->tanggal_keluar }}</td>
+                                                <td>{{ \Carbon\Carbon::parse($row->tanggal_masuk)->format('d/m/Y') }}</td>
+                                                <td>{{ \Carbon\Carbon::parse($row->tanggal_keluar)->format('d/m/Y') }}</td>
                                                 <td>{{ $row->namapic }}</td>
                                                 <td>0{{ $row->kontakpic }}</td>
                                                 <td>
                                                     <a href="/editdata/{{ $row->id }}"
                                                         class="btn btn-primary rounded">Edit</a>
 
+                                                    {{-- <form action="/deletedata/{{ $row->id }}" method="POST"
+                                                        class="d-inline delete-form">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="button"
+                                                            class="btn btn-danger rounded btn-delete">Hapus</button>
+                                                    </form> --}}
                                                     <a href="/deletedata/{{ $row->id }}"
                                                         class="btn btn-danger rounded">Hapus</a>
                                                 </td>
@@ -102,14 +114,15 @@
                                         @endforeach
                                     </tbody>
                                 </table>
-                                <div class="pull-left ml-2">
-                                    Current Page: {{ $data->currentPage() }}<br>
-                                    Jumlah Data: {{ $data->total() }}<br>
-                                    Data perhalaman: {{ $data->perPage() }}<br>
-                                    {{-- <br> --}}
-                                </div>
-                                <div class="pull-right">
-                                    {{ $data->links() }}
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        Current Page: {{ $data->currentPage() }}<br>
+                                        Jumlah Data: {{ $data->total() }}<br>
+                                        Data per halaman: {{ $data->perPage() }}<br>
+                                    </div>
+                                    <div>
+                                        {{ $data->links() }}
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -121,4 +134,44 @@
     </div>
     </div>
     @include('sweetalert::alert')
+@endsection
+@section('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const deleteButtons = document.querySelectorAll('.btn-delete');
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    const form = this.closest('form');
+                    const swalWithBootstrapButtons = Swal.mixin({
+                        customClass: {
+                            confirmButton: 'btn btn-success',
+                            cancelButton: 'btn btn-danger'
+                        },
+                        buttonsStyling: false
+                    });
+
+                    swalWithBootstrapButtons.fire({
+                        title: 'Apakah anda yakin?',
+                        text: "You won't be able to revert this!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonText: 'Yes!',
+                        cancelButtonText: 'No!',
+                        reverseButtons: true
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            form.submit();
+                        } else if (result.dismiss === Swal.DismissReason.cancel) {
+                            swalWithBootstrapButtons.fire(
+                                'Cancelled',
+                                'Your data is safe :)',
+                                'error'
+                            );
+                        }
+                    });
+                });
+            });
+        });
+    </script>
 @endsection

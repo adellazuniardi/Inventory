@@ -39,9 +39,9 @@
                                             enctype="multipart/form-data">
                                             @csrf
                                             {{-- <div class="form-group has-success">
-                                                <label for="nama" class="control-label mb-1">Gudang</label>
-                                                <select class="form-control select2" style="width: 100%;" name="nama"
-                                                    id="nama">
+                                                <label for="gudang_desk" class="control-label mb-1">Gudang</label>
+                                                <select class="form-control select2" style="width: 100%;" name="gudang_desk"
+                                                    id="gudang_desk">
                                                     <option disable value>Pilih Gudang</option>
                                                     <option value>Gudang A</option>
                                                     <option value>Gudang B</option>
@@ -54,13 +54,15 @@
                                             </div> --}}
                                             <div class="form-group has-success">
                                                 <label for="cc-name" class="control-label mb-1">Gudang</label>
-                                                <input id="cc-name" name="nama" type="text"
-                                                    placeholder="Masukkan Kapasitas Gudang"
-                                                    class="form-control cc-name valid" data-val="true"
-                                                    data-val-required="Masukkan Nama Gudang" autocomplete="cc-name"
-                                                    aria-required="true" aria-invalid="false"
-                                                    aria-describedby="cc-name-error" value="{{ $dt->nama }}" autofocus>
-                                                <span class="help-block field-validation-valid" data-valmsg-for="cc-name"
+                                                <select name="gudang_desk" id="id" class="form-control">
+                                                    <option disabled hidden>Pilih Gudang</option>
+                                                    @foreach ($gud as $item)
+                                                    <option value="{{ $item->id}}" {{ $item->id == $dt->gudang_desk ? 'selected' : ''}}>
+                                                        {{ $item->gudang }}
+                                                    </option>
+                                                    @endforeach
+                                                </select>
+                                                <span class="help-block field-validation-valid" data-valmsg-for="cc-gudang_desk"
                                                     data-valmsg-replace="true"></span>
                                                 @error('gudang')
                                                     <div class="alert alert-danger">{{ $message }}</div>
@@ -111,9 +113,11 @@
                                                     class="btn btn-lg btn-info btn-block">
                                                     <i class="fa fa-submit fa-lg"></i>&nbsp;
                                                     <span id="payment-button-amount">SUBMIT</span>
-                                                    <span id="payment-button-sending"
-                                                        style="display:none;">Sending…</span>
                                                 </button>
+                                                <a href="/deskripsi" class="btn btn-secondary btn-lg btn-block">CANCEL</a>
+                                                {{-- <td>
+                                                    <a href="/deskripsi/" class="btn btn-danger">Hapus</a>
+                                                </td> --}}
                                             </div>
                                         </form>
                                     </div>

@@ -44,19 +44,30 @@
                                                 value="{{ $data->namabarang }}" autofocus>
                                             <span class="help-block field-validation-valid" data-valmsg-for="cc-nama"
                                                 data-valmsg-replace="true"></span>
+                                                @error('namabarang')
+                                                    <div
+                                                        class="sufee-alert alert with-close alert-danger alert-dismissible fade show mt-2">
+                                                        {{-- <span class="badge badge-pill badge-danger">Error</span> --}}
+                                                        {{ $message }}
+                                                        <button type="button" class="close" data-dismiss="alert"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                @enderror
                                         </div>
                                         <div class="form-group has-success">
-                                            <label for="cc-unit" class="control-label mb-1">Gudang</label>
-                                            <select name="unit" id="id" class="form-control">
-                                                {{-- <option value="{{ $data->unit }}">{{ $data->gudang->gudang }}</option> --}}
+                                            <label for="cc-gudang_inv" class="control-label mb-1">Gudang</label>
+                                            <select name="gudang_inv" id="id" class="form-control">
+                                                {{-- <option value="{{ $data->gudang_inv }}">{{ $data->gudang->gudang }}</option> --}}
                                                 <option disable value>Pilih Gudang</option>
                                                 @foreach ($gud as $item)
-                                                <option value="{{ $item->id }}" {{ $item->id == $data->unit ? 'selected' : '' }}>
+                                                <option value="{{ $item->id }}" {{ $item->id == $data->gudang_inv ? 'selected' : '' }}>
                                                     {{ $item->gudang }}
                                                 </option>
                                                 @endforeach
                                             </select>
-                                            <span class="help-block field-validation-valid" data-valmsg-for="cc-unit"></span>
+                                            <span class="help-block field-validation-valid" data-valmsg-for="cc-gudang_inv"></span>
                                         </div>
                                        <div class="form-group has-success">
                                             <label for="cc-name" class="control-label mb-1">Nama PIC</label>
@@ -64,8 +75,15 @@
                                                 class="form-control cc-name valid" data-val="true"
                                                 value="{{ old('namapic', $data->namapic ) }}">
                                                 {{-- value="{{old('namapic', $data->namapic) }}" --}}
-                                            <span class="help-block field-validation-valid" data-valmsg-for="cc-name"
-                                                data-valmsg-replace="true"></span>
+                                                @error('namapic')
+                                                <div class="sufee-alert alert with-close alert-danger alert-dismissible fade show mt-2">
+                                                    {{ $message }}
+                                                    <button type="button" class="close" data-dismiss="alert"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            @enderror
                                         </div>
 
                                         <div class="form-group">
@@ -75,6 +93,17 @@
                                                 value="{{ $data->kontakpic }}">
                                             <span class="help-block" data-valmsg-for="cc-number"
                                                 data-valmsg-replace="true"></span>
+                                                @error('kontakpic')
+                                                    <div
+                                                        class="sufee-alert alert with-close alert-danger alert-dismissible fade show mt-2">
+                                                        {{-- <span class="badge badge-pill badge-danger">Error</span> --}}
+                                                        {{ $message }}
+                                                        <button type="button" class="close" data-dismiss="alert"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                @enderror
                                         </div>
                                         <div class="row">
                                             <div class="col-6">
@@ -114,6 +143,7 @@
                                                 <span id="payment-button-amount">SUBMIT</span>
                                                 <span id="payment-button-sending" style="display:none;">Sending…</span>
                                             </button>
+                                            <a href="/inventory" class="btn btn-secondary btn-lg btn-block">CANCEL</a>
                                         </div>
                                 </form>
                             </div>

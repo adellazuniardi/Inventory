@@ -48,22 +48,25 @@
                             <img class="align-content" src="{{ asset('image/primerTelkom.png') }}" alt="logo"
                                 width="200px">
                         </div>
-                        <label>Email address</label>
+                        <label>Email</label>
                         <div class="input-group mb-2">
-                            <input type="email" class="form-control" name="email" placeholder="Email">
+                            <input type="email" class="form-control" name="email" placeholder="Email" value="{{ old('email') }}" required>
                             <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
-                        </div>
-                        <label>Password</label>
-                        <div class="input-group">
-                            <input type="password" class="form-control" name="password" placeholder="Password">
-                            <div class="input-group-addon"><i class="fa fa-asterisk"></i></div>
-                        </div>
-                        @if ($errors->has('email'))
+                            @if ($errors->has('email'))
                             <span class="text-danger">{{ $errors->first('email') }}</span>
                         @endif
+                        </div>
+
+
+                        <label>Password</label>
+                        <div class="input-group">
+                            <input type="password" class="form-control" name="password" placeholder="Password" value="{{ old('password') }}" required>
+                            <div class="input-group-addon"><i class="fa fa-asterisk"></i></div>
+                        </div>
                         @if ($errors->has('password'))
                             <span class="text-danger">{{ $errors->first('password') }}</span>
                         @endif
+
                         @if (session('error'))
                             <span class="text-danger">{{ session('error') }}</span>
                         @endif

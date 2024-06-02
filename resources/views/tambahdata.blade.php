@@ -39,55 +39,88 @@
                                             <div class="form-group has-success">
                                                 <label for="cc-nama" class="control-label mb-1">Nama Barang</label>
                                                 <input id="cc-nama" name="namabarang" type="text"
-                                                placeholder="Masukkan  Nama Barang"
-                                                    class="form-control cc-nama valid" data-val="true"
-                                                    data-val-required="Masukkan Nama Barang" autocomplete="cc-nama"
-                                                    aria-required="true" aria-invalid="false"
+                                                    placeholder="Masukkan  Nama Barang" class="form-control cc-nama valid"
+                                                    data-val="true" data-val-required="Masukkan Nama Barang"
+                                                    autocomplete="cc-nama" aria-required="true" aria-invalid="false"
                                                     aria-describedby="cc-nama-error">
 
                                                 <span class="help-block field-validation-valid" data-valmsg-for="cc-nama"
                                                     data-valmsg-replace="true"></span>
-                                                @error('namabarang')
-                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                    @error('namabarang')
+                                                    <div
+                                                        class="sufee-alert alert with-close alert-danger alert-dismissible fade show mt-2">
+                                                        {{-- <span class="badge badge-pill badge-danger">Error</span> --}}
+                                                        {{ $message }}
+                                                        <button type="button" class="close" data-dismiss="alert"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
                                                 @enderror
                                             </div>
                                             <div class="form-group has-success">
-                                                <label for="unit" class="control-label mb-1">Gudang</label>
-                                                <select class="form-control select2" style="width: 100%;" name="unit" id="unit">
-                                                    <option disable value>Pilih Gudang</option>
+                                                <label for="gudang_inv" class="control-label mb-1">Gudang</label>
+                                                <select class="form-control select2" style="width: 100%;" name="gudang_inv"
+                                                    id="gudang_inv">
+                                                    <option disable hidden>Pilih Gudang</option>
                                                     @foreach ($gud as $data)
-                                                    <option value="{{ $data->id }}">{{ $data->gudang }}</option>
+                                                        <option value="{{ $data->id }}">{{ $data->gudang }}</option>
                                                     @endforeach
                                                 </select>
-                                                @error('unit')
-                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                @error('gudang_inv')
+                                                    <div
+                                                        class="sufee-alert alert with-close alert-danger alert-dismissible fade show mt-2">
+                                                        {{-- <span class="badge badge-pill badge-danger">Error</span> --}}
+                                                        {{ $message }}
+                                                        <button type="button" class="close" data-dismiss="alert"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
                                                 @enderror
-                                             </div>
+                                            </div>
                                             <div class="form-group has-success">
                                                 <label for="cc-name" class="control-label mb-1">Nama PIC</label>
                                                 <input id="cc-name" name="namapic" type="text"
-                                                placeholder="Masukkan Nama PIC"
-                                                    class="form-control cc-name valid" data-val="true"
-                                                    data-val-required="Masukkan Nama PIC" autocomplete="cc-name"
-                                                    aria-required="true" aria-invalid="false"
+                                                    placeholder="Masukkan Nama PIC" class="form-control cc-name valid"
+                                                    data-val="true" data-val-required="Masukkan Nama PIC"
+                                                    autocomplete="cc-name" aria-required="true" aria-invalid="false"
                                                     aria-describedby="cc-name-error">
                                                 <span class="help-block field-validation-valid" data-valmsg-for="cc-name"
                                                     data-valmsg-replace="true"></span>
-                                                @error('namapic')
+                                                {{-- @error('namapic')
                                                     <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror --}}
+                                                @error('namapic')
+                                                    <div
+                                                        class="sufee-alert alert with-close alert-danger alert-dismissible fade show mt-2">
+                                                        {{ $message }}
+                                                        <button type="button" class="close" data-dismiss="alert"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
                                                 @enderror
                                             </div>
                                             <div class="form-group">
                                                 <label for="cc-number" class="control-label mb-1">Kontak PIC</label>
                                                 <input id="cc-number" name="kontakpic" type="number"
-                                                placeholder="Masukkan Kontak PIC"
+                                                    placeholder="Masukkan Kontak PIC"
                                                     class="form-control cc-number identified visa" value=""
                                                     data-val="true" data-val-required="Masukkan Kontak PIC"
                                                     data-val-cc-number="" autocomplete="cc-number">
                                                 <span class="help-block" data-valmsg-for="cc-number"
                                                     data-valmsg-replace="true"></span>
-                                                @error('kontakpic')
-                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                    @error('kontakpic')
+                                                    <div
+                                                        class="sufee-alert alert with-close alert-danger alert-dismissible fade show mt-2">
+                                                        {{-- <span class="badge badge-pill badge-danger">Error</span> --}}
+                                                        {{ $message }}
+                                                        <button type="button" class="close" data-dismiss="alert"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
                                                 @enderror
                                             </div>
                                             <div class="row">
@@ -102,8 +135,16 @@
                                                             placeholder="MM / YY" autocomplete="cc-exp">
                                                         <span class="help-block" data-valmsg-for="cc-exp"
                                                             data-valmsg-replace="true"></span>
-                                                        @error('tanggal_masuk')
-                                                            <div class="alert alert-danger">{{ $message }}</div>
+                                                            @error('tanggal_masuk')
+                                                            <div
+                                                                class="sufee-alert alert with-close alert-danger alert-dismissible fade show mt-2">
+                                                                {{-- <span class="badge badge-pill badge-danger">Error</span> --}}
+                                                                {{ $message }}
+                                                                <button type="button" class="close" data-dismiss="alert"
+                                                                    aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
                                                         @enderror
                                                     </div>
                                                 </div>
@@ -118,8 +159,16 @@
                                                             placeholder="MM / YY" autocomplete="cc-exp">
                                                         <span class="help-block" data-valmsg-for="cc-exp"
                                                             data-valmsg-replace="true"></span>
-                                                        @error('tanggal_keluar')
-                                                            <div class="alert alert-danger">{{ $message }}</div>
+                                                            @error('tanggal_keluar')
+                                                            <div
+                                                                class="sufee-alert alert with-close alert-danger alert-dismissible fade show mt-2">
+                                                                {{-- <span class="badge badge-pill badge-danger">Error</span> --}}
+                                                                {{ $message }}
+                                                                <button type="button" class="close" data-dismiss="alert"
+                                                                    aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
                                                         @enderror
                                                     </div>
                                                 </div>

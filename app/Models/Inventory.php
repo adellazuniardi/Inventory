@@ -17,7 +17,7 @@ class Inventory extends Model
     // }
 
     public function gudang(){
-        return $this->belongsTo(Gudang::class, 'unit','id');
+        return $this->belongsTo(Gudang::class, 'gudang_inv','id');
     }
 }
 

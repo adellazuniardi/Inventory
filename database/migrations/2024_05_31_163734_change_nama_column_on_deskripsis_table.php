@@ -11,10 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('units', function (Blueprint $table) {
-            $table->id();
-            $table->string('units', 100);
-            $table->timestamps();
+        Schema::table('deskripsis', function (Blueprint $table) {
+            $table->renameColumn('nama', 'gudang_desk');
         });
     }
 
@@ -23,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('units');
+        Schema::table('deskripsis', function(Blueprint $table){
+            $table->renameColumn('nama', 'gudang_desk');
+        });
     }
 };

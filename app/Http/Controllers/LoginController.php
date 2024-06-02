@@ -21,9 +21,9 @@ class LoginController extends Controller
             'email' => 'required|email',
             'password' => 'required',
         ], [
-            'email.required' => 'Email is required.',
-            'email.email' => 'Email is not valid.',
-            'password.required' => 'Password is required.',
+            'email.required' => 'Email harus diisi.',
+            'email.email' => 'Email tidak valid.',
+            'password.required' => 'Password harus diisi.',
         ]);
 
         if ($validator->fails()) {
@@ -36,7 +36,7 @@ class LoginController extends Controller
             return redirect('/home');
         }
 
-        return redirect('/login')->with('error', 'Invalid email or password.');
+        return redirect('/login')->with('error', 'Email dan Password tidak valid.');
     }
 
     public function register()
@@ -47,9 +47,12 @@ class LoginController extends Controller
     public function registeruser(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
+            'name' => ['required', 'regex:/^[a-zA-Z\s]+$/'],
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6',
+        ],[
+            'required' => 'Kolom :attribute wajib diisi.',
+            'name.regex' => 'Username hanya boleh berisi huruf dan spasi.'
         ]);
 
         if ($validator->fails()) {

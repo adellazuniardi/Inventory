@@ -44,42 +44,44 @@
                 <div class="login-form">
                     <form action="/registeruser" method="post">
                         @csrf
-                        {{-- <label>User Name</label> --}}
+                        {{-- Logo --}}
                         <div class="login-logo">
-                            <img class="align-content" src="{{ asset('image/primerTelkom.png') }}" alt="logo"
-                                width="200px">
+                            <img class="align-content" src="{{ asset('image/primerTelkom.png') }}" alt="logo" width="200px">
                         </div>
+
+                        {{-- User Name --}}
                         <div class="input-group mt-2">
-                            <input type="text" class="form-control" name="name" placeholder="User Name">
+                            <input type="text" class="form-control" name="name" placeholder="User Name" value="{{ old('name') }}" required>
                             <div class="input-group-addon"><i class="fa fa-user"></i></div>
                         </div>
                         @if ($errors->has('name'))
                             <span class="text-danger">{{ $errors->first('name') }}</span>
                         @endif
-                        {{-- <label>Email Address</label> --}}
+
+                        {{-- Email Address --}}
                         <div class="input-group mt-2">
-                            <input type="email" class="form-control" name="email" placeholder="Email">
+                            <input type="email" class="form-control" name="email" placeholder="Email" value="{{ old('email') }}" required>
                             <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
                         </div>
                         @if ($errors->has('email'))
                             <span class="text-danger">{{ $errors->first('email') }}</span>
                         @endif
-                        {{-- <label>Password</label> --}}
+
+                        {{-- Password --}}
                         <div class="input-group mt-2">
-                            <input type="password" class="form-control" name="password" placeholder="Password">
+                            <input type="password" class="form-control" name="password" placeholder="Password" required>
                             <div class="input-group-addon"><i class="fa fa-asterisk"></i></div>
                         </div>
                         @if ($errors->has('password'))
                             <span class="text-danger">{{ $errors->first('password') }}</span>
                         @endif
-                        {{-- <div class="checkbox">
-                            <label>
-                                <input type="checkbox"> Agree the terms and policy
-                            </label>
-                        </div> --}}
+
+                        {{-- Register Button --}}
                         <div class="form-actions form-group mt-3">
                             <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30">Register</button>
                         </div>
+
+                        {{-- Link to Login --}}
                         <div class="register-link m-t-15 text-center">
                             <p>Already have account ? <a href="/login"> Sign in</a></p>
                         </div>

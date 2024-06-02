@@ -35,10 +35,9 @@
                             <div class="col-auto">
                                 <form action="{{ route('inv.indexx') }}" method="GET">
                                     <div class="form-group row">
-                                        {{-- <label for="Filter" class="col-md-2 col-form-label text-md-right">Gudang</label> --}}
                                         <div class="col-auto">
                                             <select id="gudang" class="form-control" name="gudang">
-                                                <option disable value>Gudang</option>
+                                                <option disable hidden>Gudang</option>
                                                 @foreach ($gud as $item)
                                                     <option value="{{ $item->id }}"{{ old('gudang') == $item->gudang ? 'selected' : '' }}>
                                                         {{ $item->gudang }}</option>
@@ -55,14 +54,15 @@
                                     <form action="/inv" method="get">
                                         <div class="input-group">
                                             <input type="search" class="form-control" name="search" id="" placeholder="Cari Barang">
-                                            <button type="submit" class="btn btn-secondary rounded ml-2"><i class="fa fa-search"></i></button>
+                                            {{-- <button type="submit" class="btn btn-secondary rounded ml-2"><i class="fa fa-search"></i></button> --}}
                                             {{-- <div class="input-group-addon"><i class="fa fa-search"></i></div> --}}
                                         </div>
                                     </form>
                                 </div>
                             </div>
                         </div>
-                        <table class="table table-bordered ml-2 mr-2">
+                        <div class="table-responsive">
+                        <table class="table table-bordered">
                             <thead class="thead-dark">
                                 <tr>
                                     <th scope="col">#</th>
@@ -83,14 +83,15 @@
                                         <th scope="row">{{ $index + $data->firstItem() }}</th>
                                         <td>{{ $row->namabarang }}</td>
                                         <td>{{ $row->gudang->gudang }}</td>
-                                        <td>{{ $row->tanggal_masuk }}</td>
-                                        <td>{{ $row->tanggal_keluar }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($row->tanggal_masuk)->format('d/m/Y') }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($row->tanggal_keluar)->format('d/m/Y') }}</td>
                                         <td>{{ $row->namapic }}</td>
                                         <td>0{{ $row->kontakpic }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
                         </table>
+                        </div>
                         <div class="d-flex justify-content-between ml-2">
                             <div>
                                 Current Page: {{ $data->currentPage() }}<br>
@@ -101,14 +102,6 @@
                                 {{ $data->links() }}
                             </div>
                         </div>
-                        {{-- <div class="pull-left ml-2">
-                            Current Page: {{ $data->currentPage() }}<br>
-                            Jumlah Data: {{ $data->total() }}<br>
-                            Data per halaman: {{ $data->perPage() }}<br>
-                        </div>
-                        <div class="pull-right">
-                            {{ $data->links() }}
-                        </div> --}}
                     </div>
                 </div>
             </div>

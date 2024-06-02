@@ -5,7 +5,7 @@
         <div class="col-sm-4">
             <div class="page-header float-left">
                 <div class="page-title">
-                    <h1 class="text-center">MANAJEMENT GUDANG</h1>
+                    <h1 class="text-center">DESKRIPSI GUDANG</h1>
                 </div>
             </div>
         </div>
@@ -59,7 +59,7 @@
                                         <tr>
                                             {{-- <th scope="row">{{ $index + $datas->firstItem() }}</th> --}}
                                             <th scope="row">{{ $no++}}</th>
-                                            <td>{{ $row->nama}}</td>
+                                            <td>{{ $row->gudang->gudang}}</td>
                                             <td>{{ $row->kapasitas}}</td>
                                             <td>{!! $row->deskripsi!!}</td>
                                             <td>

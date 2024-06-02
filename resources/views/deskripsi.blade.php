@@ -59,9 +59,9 @@
                                         <tr>
                                             {{-- <th scope="row">{{ $index + $datas->firstItem() }}</th> --}}
                                             <th scope="row">{{ $no++}}</th>
-                                            <td>{{ $row->nama}}</td>
+                                            <td>{{ $row->gudang->gudang}}</td>
                                             <td>{{ $row->kapasitas}}</td>
-                                            <td>{!! $row->deskripsi!!}</td>
+                                            <td class="description-cell">{!! $row->deskripsi!!}</td>
                                             <td>
                                                 {{-- <img src="{{asset('fotopegawai/'.$row->foto)}}" alt="" heigth="10%" width="50%" style="100px"> --}}
                                                 <a href="{{asset('fotopegawai/'.$row->foto)}}" target="_blank" rel="noopener noreeferrer">Lihat Foto</a>
@@ -90,4 +90,24 @@
         </div>
     </div>
     @include('sweetalert::alert')
+@endsection
+@section('css')
+<style>
+    table.table {
+        width: 100%;
+        table-layout: fixed; /* Make table cells have fixed width */
+    }
+
+    table.table th, table.table td {
+        word-wrap: break-word; /* Ensure long words break and wrap to next line */
+        overflow-wrap: break-word; /* Alternative property for better support */
+        white-space: normal; /* Allow line breaks within words */
+    }
+
+    .description-cell {
+        white-space: normal; /* Allows text wrapping for the description cell */
+        word-wrap: break-word; /* Ensures long words break and wrap to the next line */
+        overflow-wrap: break-word; /* Better support across browsers */
+    }
+</style>
 @endsection

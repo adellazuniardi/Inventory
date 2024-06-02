@@ -12,4 +12,10 @@ class Gudang extends Model
     public function inventories(){
         return $this->hasMany(Inventory::class);
     }
+
+    public function deskripsis()
+    {
+        return $this->hasMany(Deskripsi::class);
+    }
+
 }
