@@ -101,6 +101,9 @@ class DeskripsiController extends Controller
             'foto' => $foto
         ]);
 
+        // dd($dt);
+
+
         return redirect()->route('deskripsi')->with('toast_success', 'Data Berhasil Update');
     }
 

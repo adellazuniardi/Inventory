@@ -6,7 +6,6 @@ namespace App\Http\Controllers;
 use App\Models\Gudang;
 use App\Models\Inventory;
 use Illuminate\Http\Request;
-
 use Carbon\Carbon;
 
 class InventoryController extends Controller
@@ -65,24 +64,25 @@ class InventoryController extends Controller
         // dd($request->all());
         $this->validate($request,[
             'namabarang' => 'required|max:255',
-            'gudang_inv' => 'required',
+            'gudang_inv' => 'required|min:1',
             'namapic' => 'required|regex:/^[a-zA-Z\s]+$/',
             'kontakpic' => 'required',
             'tanggal_masuk' => 'required',
             'tanggal_keluar' => 'required',
         ], [
             // 'required' => 'Kolom :attribute wajib diisi.',
-            'namabarang.required' => 'Nama Barang harus diisi!',
-            'gudang_inv.required' => 'Gudang harus diisi!',
-            'namapic.required' => 'Gudang harus diisi!',
-            'kontakpic.required' => 'Kontak PIC harus diisi!',
-            'tanggal_masuk.required' => 'Tanggal Masuk harus diisi!',
-            'tanggal_keluar.required' => 'Tanggal Keluar harus diisi!',
+                'namabarang.required' => 'Nama Barang harus diisi!',
+                'gudang_inv.required' => 'Gudang harus dipilih!',
+                'gudang_inv.min' => 'Gudang harus dipilih!',
+                'namapic.required' => 'Gudang harus diisi!',
+                'kontakpic.required' => 'Kontak PIC harus diisi!',
+                'tanggal_masuk.required' => 'Tanggal Masuk harus diisi!',
+                'tanggal_keluar.required' => 'Tanggal Keluar harus diisi!',
 
-            'max' => [
-                'string' => 'Kolom :attribute tidak boleh lebih dari :max karakter.',
-            ],
-            'namapic.regex' => 'Nama PIC hanya boleh berisi huruf dan spasi.', // Pesan kesalahan kustom
+                'max' => [
+                    'string' => 'Kolom :attribute tidak boleh lebih dari :max karakter.',
+                ],
+                'namapic.regex' => 'Nama PIC hanya boleh berisi huruf.', // Pesan kesalahan kustom
         ]);
 
         Inventory::create($request->all());
@@ -181,37 +181,10 @@ class InventoryController extends Controller
             'barangBaruMasuk',
             'barangMasukSebulan',
             'barangKeluarSebulan',
-            // 'gudangLabels',
-            // 'barangMasukGudang',
-            // 'barangKeluarGudang'
-
-            // 'months',
-            // 'barangMasuk',
-            // 'barangKeluar'
-            // 'barangPerGudang',
-
-
-        // data untuk chart
-        // $months = [];
-        // $barangMasuk = [];
-        // $barangKeluar = [];
-
-        // for ($i = 0; $i < 12; $i++) {
-        //     $month = Carbon::now()->subMonths($i);
-        //     $months[] = $month->format('F');
-
-        //     $barangMasuk[] = Inventory::whereMonth('tanggal_masuk', $month->month)
-        //                               ->whereYear('tanggal_masuk', $month->year)
-        //                               ->count();
-
-        //     $barangKeluar[] = Inventory::whereMonth('tanggal_keluar', $month->month)
-        //                                ->whereYear('tanggal_keluar', $month->year)
-        //                                ->count();
-        // }
-
-        // $months = array_reverse($months);
-        // $barangMasuk = array_reverse($barangMasuk);
-        // $barangKeluar = array_reverse($barangKeluar);
         ));
     }
 }
+
+
+
+

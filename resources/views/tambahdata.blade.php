@@ -128,7 +128,7 @@
                                                     <div class="form-group">
                                                         <label for="cc-exp" class="control-label mb-1">Tanggal
                                                             Masuk</label>
-                                                        <input id="cc-exp" name="tanggal_masuk" type="datetime-local"
+                                                        <input id="cc-exp" name="tanggal_masuk" type="date"
                                                             class="form-control cc-exp" value="" data-val="true"
                                                             data-val-required="Please enter the card expiration"
                                                             data-val-cc-exp="Please enter a valid month and year"
@@ -152,7 +152,7 @@
                                                     <div class="form-group">
                                                         <label for="cc-exp" class="control-label mb-1">Tanggal
                                                             Keluar</label>
-                                                        <input id="cc-exp" name="tanggal_keluar" type="datetime-local"
+                                                        <input id="cc-exp" name="tanggal_keluar" type="date"
                                                             class="form-control cc-exp" value="" data-val="true"
                                                             data-val-required="Please enter the card expiration"
                                                             data-val-cc-exp="Please enter a valid month and year"

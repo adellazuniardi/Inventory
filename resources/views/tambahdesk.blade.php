@@ -60,8 +60,16 @@
                                                     aria-describedby="cc-name-error">
                                                 <span class="help-block field-validation-valid" data-valmsg-for="cc-name"
                                                     data-valmsg-replace="true"></span>
-                                                @error('kapasitas')
-                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                    @error('kapasitas')
+                                                    <div
+                                                        class="sufee-alert alert with-close alert-danger alert-dismissible fade show mt-2">
+                                                        {{-- <span class="badge badge-pill badge-danger">Error</span> --}}
+                                                        {{ $message }}
+                                                        <button type="button" class="close" data-dismiss="alert"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
                                                 @enderror
                                             </div>
                                             <div class="form-group">
@@ -69,10 +77,18 @@
                                                 <textarea id="editor" name="deskripsi" type="number" placeholder="Masukkan Detail Gudang"
                                                     class="form-control cc-number identified visa" value="" data-val="true"
                                                     data-val-required="Masukkan Detail Gudang" data-val-cc-number="" autocomplete="cc-number">
-                                                @error('deskripsi')
-                                                    <div class="alert alert-danger">{{ $message }}</div>
-                                                @enderror
                                             </textarea>
+                                            @error('deskripsi')
+                                                    <div
+                                                        class="sufee-alert alert with-close alert-danger alert-dismissible fade show mt-2">
+                                                        {{-- <span class="badge badge-pill badge-danger">Error</span> --}}
+                                                        {{ $message }}
+                                                        <button type="button" class="close" data-dismiss="alert"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                @enderror
                                             </div>
                                             <div class="form-group has-success">
                                                 <label for="cc-name" class="control-label mb-1">Foto</label>
@@ -84,8 +100,16 @@
                                                 <span class="help-block field-validation-valid" data-valmsg-for="cc-name"
                                                     data-valmsg-replace="true"></span>
                                                 @error('foto')
-                                                    <div class="alert alert-danger">{{ $message }}</div>
-                                                @enderror
+                                                <div
+                                                    class="sufee-alert alert with-close alert-danger alert-dismissible fade show mt-2">
+                                                    {{-- <span class="badge badge-pill badge-danger">Error</span> --}}
+                                                    {{ $message }}
+                                                    <button type="button" class="close" data-dismiss="alert"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                            @enderror
                                             </div>
                                             <div>
                                                 <button id="payment-button" type="submit"

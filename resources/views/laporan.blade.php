@@ -57,8 +57,8 @@
                         </div>
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-2">
-                                <button type="submit" class="btn btn-primary btn-rounded">
-                                    Generate Laporan
+                                <button type="submit" class="btn btn-primary rounded">
+                                    Buat Laporan
                                 </button>
                             </div>
                         </div>

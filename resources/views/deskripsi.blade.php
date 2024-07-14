@@ -5,7 +5,7 @@
         <div class="col-sm-4">
             <div class="page-header float-left">
                 <div class="page-title">
-                    <h1 class="text-center">MANAJEMENT GUDANG</h1>
+                    <h1 class="text-center">MASTER GUDANG</h1>
                 </div>
             </div>
         </div>
@@ -63,13 +63,12 @@
                                             <td>{{ $row->kapasitas}}</td>
                                             <td class="description-cell">{!! $row->deskripsi!!}</td>
                                             <td>
-                                                {{-- <img src="{{asset('fotopegawai/'.$row->foto)}}" alt="" heigth="10%" width="50%" style="100px"> --}}
                                                 <a href="{{asset('fotopegawai/'.$row->foto)}}" target="_blank" rel="noopener noreeferrer">Lihat Foto</a>
                                             </td>
                                                 <td>
-                                                    <a href="/editdesk/{{ $row->id }}" class="btn btn-primary rounded">Edit</a>
-
-                                                    <a href="/deletedesk/{{ $row->id }}" class="btn btn-danger rounded">Hapus</a>
+                                                    <a href="/editdesk/{{ $row->id }}" class="btn btn-primary btn-sm rounded">Edit</a>
+                                                    
+                                                <button onclick="confirmDelete('{{ route('deletedesk', $row->id) }}')" class="btn btn-danger btn-sm rounded">Delete</button>
                                                 </td>
                                         </tr>
                                         @endforeach
@@ -90,24 +89,4 @@
         </div>
     </div>
     @include('sweetalert::alert')
-@endsection
-@section('css')
-<style>
-    table.table {
-        width: 100%;
-        table-layout: fixed; /* Make table cells have fixed width */
-    }
-
-    table.table th, table.table td {
-        word-wrap: break-word; /* Ensure long words break and wrap to next line */
-        overflow-wrap: break-word; /* Alternative property for better support */
-        white-space: normal; /* Allow line breaks within words */
-    }
-
-    .description-cell {
-        white-space: normal; /* Allows text wrapping for the description cell */
-        word-wrap: break-word; /* Ensures long words break and wrap to the next line */
-        overflow-wrap: break-word; /* Better support across browsers */
-    }
-</style>
 @endsection

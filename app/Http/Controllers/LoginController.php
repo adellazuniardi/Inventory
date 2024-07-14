@@ -52,7 +52,8 @@ class LoginController extends Controller
             'password' => 'required|min:6',
         ],[
             'required' => 'Kolom :attribute wajib diisi.',
-            'name.regex' => 'Username hanya boleh berisi huruf dan spasi.'
+            'name.regex' => 'Username hanya boleh berisi huruf.',
+            'password.required' => 'password harus lebih dari 6 karakter'
         ]);
 
         if ($validator->fails()) {
@@ -69,7 +70,7 @@ class LoginController extends Controller
             'remember_token' => Str::random(60),
         ]);
 
-        return redirect('/login')->with('success', 'Registration successful. Please login.');
+        return redirect('/login')->with('success', 'Registrasai berhasil. Silahkan login.');
     }
 
     public function logout()

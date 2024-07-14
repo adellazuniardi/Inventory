@@ -60,8 +60,8 @@
                     <td>{{ $index + 1 }}</td>
                     <td>{{ $row->namabarang }}</td>
                     <td>{{ $row->gudang->gudang }}</td>
-                    <td>{{ $row->tanggal_masuk }}</td>
-                    <td>{{ $row->tanggal_keluar }}</td>
+                    <td>{{ \Carbon\Carbon::parse($row->tanggal_masuk)->format('d/m/Y') }}</td>
+                    <td>{{ \Carbon\Carbon::parse($row->tanggal_keluar)->format('d/m/Y') }}</td>
                     <td>{{ $row->namapic }}</td>
                     <td>{{ $row->kontakpic }}</td>
                 </tr>

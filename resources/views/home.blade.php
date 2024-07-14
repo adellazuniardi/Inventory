@@ -5,7 +5,7 @@
         <div class="col-sm-4">
             <div class="page-header float-left">
                 <div class="page-title">
-                    <h1 class="text-center">DASHBOARD</h1>
+                    <h1 class="text-center">Selamat Datang {{ Auth::user()->name}}! </h1>
                 </div>
             </div>
         </div>

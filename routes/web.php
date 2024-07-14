@@ -5,6 +5,9 @@ use App\Http\Controllers\LaporanController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\InventoryController;
+use App\Http\Controllers\GudangcategoryController;
+use App\Http\Controllers\UserController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -44,8 +47,8 @@ Route::get('/inventory.index', [InventoryController::class,'index'])->name('inve
 Route::get('/inv.indexx', [InventoryController::class,'indexx'])->name('inv.indexx');
 
    //tambahdata
-   Route::get('/tambahdata', [InventoryController::class, 'tambahdata'])->name('tambahdata');
-   Route::post('/insertdata', [InventoryController::class, 'insertdata'])->name('insertdata');
+Route::get('/tambahdata', [InventoryController::class, 'tambahdata'])->name('tambahdata');
+Route::post('/insertdata', [InventoryController::class, 'insertdata'])->name('insertdata');
 
 //logout
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
@@ -72,6 +75,21 @@ Route::group(['middleware' => ['auth','cekrole:admin,karyawan']], function(){
 Route::group(['middleware' => ['auth', 'cekrole:admin']], function(){
     Route::get('/deskripsi', [DeskripsiController::class, 'index'])->name('deskripsi');
     Route::get('/inventory', [InventoryController::class, 'index'])->name('inventory');
+    Route::get('/categorygudang', [GudangcategoryController::class, 'showGudang'])->name('categorygudang');
+
+
+//category
+    Route::get('/tambahcategory', [GudangcategoryController::class, 'tambahcategory'])->name('tambahcategory');
+Route::post('/insertcategory', [GudangcategoryController::class, 'insertcategory'])->name('insertcategory');
+Route::get('/editcategory/{id}', [GudangcategoryController::class, 'editcategory'])->name('editcategory');
+Route::post('/updatecategory/{id}', [GudangcategoryController::class, 'updatecategory'])->name('updatecategory');
+Route::get('/deletecategory/{id}', [GudangcategoryController::class, 'deletecategory'])->name('deletecategory');
+
+//user
+Route::get('/users', [UserController::class, 'index'])->name('users.index');
+    Route::post('/users/{user}/make-admin', [UserController::class, 'makeAdmin'])->name('users.makeAdmin');
+    Route::post('/users/{user}/demote-admin', [UserController::class, 'demoteAdmin'])->name('users.demoteAdmin');
+    Route::get('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
 
 //edit
 Route::get('/editdata/{id}', [InventoryController::class, 'editdata'])->name('editdata');
@@ -91,6 +109,5 @@ Route::post('/updatedesk/{id}', [DeskripsiController::class, 'updatedesk'])->nam
 
 //deletedesk
 Route::get('/deletedesk/{id}', [DeskripsiController::class, 'deletedesk'])->name('deletedesk');
-
 
 });

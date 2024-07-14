@@ -22,6 +22,8 @@
 
 @section('content')
 <div class="content mt-3">
+
+    
     <div class="animated fadeIn">
         <div class="container">
         <div class="row justify-content-center">

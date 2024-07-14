@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="{{ asset('style/assets/css/normalize.css') }}">
     <link rel="stylesheet" href="{{ asset('style/assets/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('style/assets/css/font-awesome.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('styleassets/css/themify-icons.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('styleassets/css/themify-icons.css') }}"> --}}
     <link rel="stylesheet" href="{{ asset('style/assets/css/flag-icon.min.css') }}">
     <link rel="stylesheet" href="{{ asset('style/assets/css/cs-skin-elastic.css') }}">
     <link rel="stylesheet" href="{{ asset('style/assets/scss/style.css') }}">
@@ -34,8 +34,10 @@
     <script src="{{ asset('style/assets/js/popper.min.js') }}"></script>
     <script src="{{ asset('style/assets/js/plugins.js') }}"></script>
     <script src="{{ asset('style/assets/js/main.js') }}"></script>
-
-
+    <script src="{{ asset('style/assets/js/lib/chart-js/Chart.bundle.js') }}"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    {{-- <script src="{{ asset('style/assets/js/bootstrap.min.js') }}"></script> --}}
+    {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script> --}}
 
     <aside id="left-panel" class="left-panel">
         <nav class="navbar navbar-expand-sm navbar-default">
@@ -70,10 +72,15 @@
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="fa fa-archive"></i><a href="/inventory">Transaksi Gudang</a></li>
                             <li><i class="fa fa-building-o"></i><a href="/deskripsi">Master Gudang</a></li>
+                            <li><i class="fa fa-th"></i><a href="/categorygudang">Kategori Gudang</a></li>
+                            <li><i class="fa fa-users"></i><a href="/users">Master User</a></li>
                         </ul>
                     </li>
                     @endif
                 </ul>
+
+
+
             </div><!-- /.navbar-collapse -->
         </nav>
     </aside><!-- /#left-panel -->
@@ -123,12 +130,11 @@
         @yield('ckeditor')
 
         @yield('scripts')
-
-    </div>
-
-    {{-- <footer class="fixed-bottom p-3 bg-dark-subtle">
-        <span class="text-muted">Place fixed footer content here.</span>
+    {{-- <footer class="fixed-bottom p-3 bg-dark text-white">
+        <div class="container text-center">
+            <span>&copy; {{ date('Y') }} Telkom Inventory. All rights reserved.</span>
+        </div>
     </footer> --}}
+    </div>
 </body>
-
 </html>

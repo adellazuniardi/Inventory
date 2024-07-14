@@ -5,7 +5,7 @@
         <div class="col-sm-4">
             <div class="page-header float-left">
                 <div class="page-title">
-                    <h1 class="text-center">MANAJEMENT INVENTORY</h1>
+                    <h1 class="text-center">TRANSAKSI GUDANG</h1>
                 </div>
             </div>
         </div>
@@ -98,17 +98,10 @@
                                                 <td>0{{ $row->kontakpic }}</td>
                                                 <td>
                                                     <a href="/editdata/{{ $row->id }}"
-                                                        class="btn btn-primary rounded">Edit</a>
+                                                        class="btn btn-primary btn-sm rounded">Edit</a>
+                                                    <button onclick="confirmDelete('{{ route('deletedata', $item->id) }}')"
+                                                        class="btn btn-danger btn-sm rounded">Delete</button>
 
-                                                    {{-- <form action="/deletedata/{{ $row->id }}" method="POST"
-                                                        class="d-inline delete-form">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="button"
-                                                            class="btn btn-danger rounded btn-delete">Hapus</button>
-                                                    </form> --}}
-                                                    <a href="/deletedata/{{ $row->id }}"
-                                                        class="btn btn-danger rounded">Hapus</a>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -134,44 +127,4 @@
     </div>
     </div>
     @include('sweetalert::alert')
-@endsection
-@section('scripts')
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const deleteButtons = document.querySelectorAll('.btn-delete');
-            deleteButtons.forEach(button => {
-                button.addEventListener('click', function(event) {
-                    event.preventDefault();
-                    const form = this.closest('form');
-                    const swalWithBootstrapButtons = Swal.mixin({
-                        customClass: {
-                            confirmButton: 'btn btn-success',
-                            cancelButton: 'btn btn-danger'
-                        },
-                        buttonsStyling: false
-                    });
-
-                    swalWithBootstrapButtons.fire({
-                        title: 'Apakah anda yakin?',
-                        text: "You won't be able to revert this!",
-                        icon: 'warning',
-                        showCancelButton: true,
-                        confirmButtonText: 'Yes!',
-                        cancelButtonText: 'No!',
-                        reverseButtons: true
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            form.submit();
-                        } else if (result.dismiss === Swal.DismissReason.cancel) {
-                            swalWithBootstrapButtons.fire(
-                                'Cancelled',
-                                'Your data is safe :)',
-                                'error'
-                            );
-                        }
-                    });
-                });
-            });
-        });
-    </script>
 @endsection

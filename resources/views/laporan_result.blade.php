@@ -35,7 +35,7 @@
                             <input type="hidden" name="gudang" value="{{ request('gudang') }}">
                             <input type="hidden" name="tanggal_masuk" value="{{ request('tanggal_masuk') }}">
                             <input type="hidden" name="tanggal_keluar" value="{{ request('tanggal_keluar') }}">
-                            <button type="submit" class="btn btn-primary">Download PDF</button>
+                            <button type="submit" class="btn btn-primary rounded">Download PDF</button>
                         </form>
                     </div>
                     <div class="card-body">
@@ -57,8 +57,8 @@
                                         <td>{{ $index + 1 }}</td>
                                         <td>{{ $row->namabarang }}</td>
                                         <td>{{ $row->gudang->gudang }}</td>
-                                        <td>{{ $row->tanggal_masuk }}</td>
-                                        <td>{{ $row->tanggal_keluar }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($row->tanggal_masuk)->format('d/m/Y') }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($row->tanggal_keluar)->format('d/m/Y') }}</td>
                                         <td>{{ $row->namapic }}</td>
                                         <td>{{ $row->kontakpic }}</td>
                                     </tr>
