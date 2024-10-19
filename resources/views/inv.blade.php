@@ -27,13 +27,13 @@
             <div class="container">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="text-center">Data Gudang</h3>
+                        <h3 class="text-center">Data Barang Masuk</h3>
                     </div>
                     @csrf
                     <div class="card-body">
                         <div class="row mb-2 ml-1 mt-2">
                             <div class="col-auto">
-                                <form action="{{ route('inv.indexx') }}" method="GET">
+                                <form action="{{ route('invmasuk') }}" method="GET">
                                     <div class="form-group row">
                                         <div class="col-auto">
                                             <select id="gudang" class="form-control" name="gudang">
@@ -45,13 +45,13 @@
                                             </select>
                                         </div>
                                         <button type="submit" class="btn btn-info mr-1 rounded">Filter</button>
-                                        <a href="{{ route('inv.indexx') }}" class="btn btn-secondary rounded">Reset</a>
+                                        <a href="{{ route('invmasuk') }}" class="btn btn-secondary rounded">Reset</a>
                                     </div>
                                 </form>
                             </div>
                             <div class="col-auto">
                                 <div class="form-group">
-                                    <form action="/inv" method="get">
+                                    <form action="/invmasuk" method="get">
                                         <div class="input-group">
                                             <input type="search" class="form-control" name="search" id="" placeholder="Cari Barang">
                                             {{-- <button type="submit" class="btn btn-secondary rounded ml-2"><i class="fa fa-search"></i></button> --}}
@@ -69,7 +69,6 @@
                                     <th scope="col">Nama Barang</th>
                                     <th scope="col">Gudang</th>
                                     <th scope="col">Tanggal Masuk</th>
-                                    <th scope="col">Tanggal Keluar</th>
                                     <th scope="col">Nama PIC</th>
                                     <th scope="col">Kontak PIC</th>
                                 </tr>
@@ -84,7 +83,6 @@
                                         <td>{{ $row->namabarang }}</td>
                                         <td>{{ $row->gudang->gudang }}</td>
                                         <td>{{ \Carbon\Carbon::parse($row->tanggal_masuk)->format('d/m/Y') }}</td>
-                                        <td>{{ \Carbon\Carbon::parse($row->tanggal_keluar)->format('d/m/Y') }}</td>
                                         <td>{{ $row->namapic }}</td>
                                         <td>0{{ $row->kontakpic }}</td>
                                     </tr>

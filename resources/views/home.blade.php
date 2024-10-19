@@ -37,7 +37,7 @@
                     <div class="progress progress-xs mt-3 mb-0 bg-flat-color-1" style="width: 100%; height: 5px;"></div>
                 </div>
             </div>
-            <div class="card col-md-6 no-padding ">
+            {{-- <div class="card col-md-6 no-padding ">
                 <div class="card-body">
                     <div class="h1 text-muted text-right mb-4">
                         <i class="fa fa-arrow-up"></i>
@@ -49,7 +49,7 @@
                     <small class="text-muted text-uppercase font-weight-bold">Barang Keluar Bulan Ini</small>
                     <div class="progress progress-xs mt-3 mb-0 bg-flat-color-2" style="width: 100%; height: 5px;"></div>
                 </div>
-            </div>
+            </div> --}}
             <div class="card col-md-6 no-padding ">
                 <div class="card-body">
                     <div class="h1 text-muted text-right mb-4">
@@ -63,7 +63,7 @@
                     <div class="progress progress-xs mt-3 mb-0 bg-flat-color-3" style="width: 100%; height: 5px;"></div>
                 </div>
             </div>
-            <div class="card col-md-6 no-padding ">
+            {{-- <div class="card col-md-6 no-padding ">
                 <div class="card-body">
                     <div class="h1 text-muted text-right mb-4">
                         <i class="fa fa-arrow-up"></i>
@@ -75,7 +75,7 @@
                     <small class="text-muted text-uppercase font-weight-bold">Barang Keluar Minggu Ini</small>
                     <div class="progress progress-xs mt-3 mb-0 bg-flat-color-4" style="width: 100%; height: 5px;"></div>
                 </div>
-            </div>
+            </div> --}}
             <div class="card col-md-6 no-padding">
                 <div class="card-body">
                     <div class="h1 text-muted text-right mb-4">
@@ -113,13 +113,31 @@
             <div class="card-body">
                 <div class="clearfix">
                     <i class="fa fa-archive bg-info p-3 font-2xl mr-3 float-left text-light"></i>
-                    <div class="h5 text-secondary mb-0 mt-1">DATA GUDANG</div>
+                    <div class="h5 text-secondary mb-0 mt-1">DATA BARANG MASUK</div>
                     {{-- <div class="text-muted text-uppercase font-weight-bold font-xs small">Income</div> --}}
                 </div>
                 <div class="b-b-1 pt-3"></div>
                 <hr>
                 <div class="more-info pt-2" style="margin-bottom:-10px;">
-                    <a class="font-weight-bold font-xs btn-block text-muted small" href="/inv">View More <i
+                    <a class="font-weight-bold font-xs btn-block text-muted small" href="/invmasuk">View More <i
+                            class="fa fa-angle-right float-right font-lg"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-6 col-lg-3">
+        <div class="card">
+            <div class="card-body">
+                <div class="clearfix">
+                    <i class="fa fa-archive bg-info p-3 font-2xl mr-3 float-left text-light"></i>
+                    <div class="h5 text-secondary mb-0 mt-1">DATA BARANG KELUAR</div>
+                    {{-- <div class="text-muted text-uppercase font-weight-bold font-xs small">Income</div> --}}
+                </div>
+                <div class="b-b-1 pt-3"></div>
+                <hr>
+                <div class="more-info pt-2" style="margin-bottom:-10px;">
+                    <a class="font-weight-bold font-xs btn-block text-muted small" href="/invkeluar">View More <i
                             class="fa fa-angle-right float-right font-lg"></i></a>
                 </div>
             </div>

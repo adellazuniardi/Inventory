@@ -123,58 +123,28 @@
                                                     </div>
                                                 @enderror
                                             </div>
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    <div class="form-group">
-                                                        <label for="cc-exp" class="control-label mb-1">Tanggal
-                                                            Masuk</label>
-                                                        <input id="cc-exp" name="tanggal_masuk" type="date"
-                                                            class="form-control cc-exp" value="" data-val="true"
-                                                            data-val-required="Please enter the card expiration"
-                                                            data-val-cc-exp="Please enter a valid month and year"
-                                                            placeholder="MM / YY" autocomplete="cc-exp">
-                                                        <span class="help-block" data-valmsg-for="cc-exp"
-                                                            data-valmsg-replace="true"></span>
-                                                            @error('tanggal_masuk')
-                                                            <div
-                                                                class="sufee-alert alert with-close alert-danger alert-dismissible fade show mt-2">
-                                                                {{-- <span class="badge badge-pill badge-danger">Error</span> --}}
-                                                                {{ $message }}
-                                                                <button type="button" class="close" data-dismiss="alert"
-                                                                    aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-                                                        @enderror
+                                            <div class="form-group">
+                                                <label for="cc-exp" class="control-label mb-1">Tanggal
+                                                    Masuk</label>
+                                                <input id="cc-exp" name="tanggal_masuk" type="date"
+                                                    class="form-control cc-exp" value="" data-val="true"
+                                                    data-val-required="Please enter the card expiration"
+                                                    data-val-cc-exp="Please enter a valid month and year"
+                                                    placeholder="MM / YY" autocomplete="cc-exp">
+                                                <span class="help-block" data-valmsg-for="cc-exp"
+                                                    data-valmsg-replace="true"></span>
+                                                    @error('tanggal_masuk')
+                                                    <div
+                                                        class="sufee-alert alert with-close alert-danger alert-dismissible fade show mt-2">
+                                                        {{-- <span class="badge badge-pill badge-danger">Error</span> --}}
+                                                        {{ $message }}
+                                                        <button type="button" class="close" data-dismiss="alert"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
                                                     </div>
-                                                </div>
-                                                <div class="col-6">
-                                                    <div class="form-group">
-                                                        <label for="cc-exp" class="control-label mb-1">Tanggal
-                                                            Keluar</label>
-                                                        <input id="cc-exp" name="tanggal_keluar" type="date"
-                                                            class="form-control cc-exp" value="" data-val="true"
-                                                            data-val-required="Please enter the card expiration"
-                                                            data-val-cc-exp="Please enter a valid month and year"
-                                                            placeholder="MM / YY" autocomplete="cc-exp">
-                                                        <span class="help-block" data-valmsg-for="cc-exp"
-                                                            data-valmsg-replace="true"></span>
-                                                            @error('tanggal_keluar')
-                                                            <div
-                                                                class="sufee-alert alert with-close alert-danger alert-dismissible fade show mt-2">
-                                                                {{-- <span class="badge badge-pill badge-danger">Error</span> --}}
-                                                                {{ $message }}
-                                                                <button type="button" class="close" data-dismiss="alert"
-                                                                    aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-                                                        @enderror
-                                                    </div>
-                                                </div>
+                                                @enderror
                                             </div>
-
-
                                             <div>
                                                 <button id="payment-button" type="submit"
                                                     class="btn btn-lg btn-info btn-block rounded">

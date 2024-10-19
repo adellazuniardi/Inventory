@@ -70,7 +70,8 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false"> <i class="menu-icon fa fa-briefcase"></i>Manajemen</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa-archive"></i><a href="/inventory">Transaksi Gudang</a></li>
+                            <li><i class="fa fa-archive"></i><a href="/barangMasuk">Barang Masuk</a></li>
+                            <li><i class="fa fa-archive"></i><a href="/barangKeluar">Barang Keluar</a></li>
                             <li><i class="fa fa-building-o"></i><a href="/deskripsi">Master Gudang</a></li>
                             <li><i class="fa fa-th"></i><a href="/categorygudang">Kategori Gudang</a></li>
                             <li><i class="fa fa-users"></i><a href="/users">Master User</a></li>

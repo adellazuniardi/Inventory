@@ -12,12 +12,15 @@ class Inventory extends Model
 
     protected $guarded = [];
 
+    public function gudang(){
+        return $this->belongsTo(Gudang::class, 'gudang_inv','id');
+    }
+
+    
     // public function units(){
     //     return $this->belongsTo((Unit::class));
     // }
 
-    public function gudang(){
-        return $this->belongsTo(Gudang::class, 'gudang_inv','id');
-    }
+
 }
 

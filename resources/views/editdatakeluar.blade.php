@@ -1,23 +1,24 @@
 @extends('main')
+
 @section('breadcrumbs')
-    <div class="breadcrumbs">
-        <div class="col-sm-4">
-            <div class="page-header float-left">
-                <div class="page-title">
-                    <h1 class="text-center">EDIT DATA BARANG MASUK</h1>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-8">
-            <div class="page-header float-right">
-                <div class="page-title">
-                    <ol class="breadcrumb text-right">
-                        <li class="active"><i class="fa fa-plus-square"></i></li>
-                    </ol>
-                </div>
+<div class="breadcrumbs">
+    <div class="col-sm-4">
+        <div class="page-header float-left">
+            <div class="page-title">
+                <h1 class="text-center">EDIT DATA BARANG KELUAR</h1>
             </div>
         </div>
     </div>
+    <div class="col-sm-8">
+        <div class="page-header float-right">
+            <div class="page-title">
+                <ol class="breadcrumb text-right">
+                    <li class="active"><i class="fa fa-plus-square"></i></li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
 
 @section('content')
@@ -34,7 +35,7 @@
                                     <h3 class="text-center">Edit Barang Masuk</h3>
                                 </div>
                                 <hr>
-                                    <form action="/updatedata/{{ $data->id }}" method="post" >
+                                    <form action="/updatedataKeluar/{{ $data->id }}" method="post" >
                                         @csrf
                                         <div class="form-group has-success">
                                             <label for="cc-nama" class="control-label mb-1">Nama Barang</label>
@@ -107,10 +108,10 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="cc-exp" class="control-label mb-1">Tanggal Masuk</label>
-                                            <input id="cc-exp" name="tanggal_masuk" type="datetime-local"
+                                            <label for="cc-exp" class="control-label mb-1">Tanggal Keluar</label>
+                                            <input id="cc-exp" name="tanggal_keluar" type="datetime-local"
                                                 class="form-control cc-exp"
-                                                value="{{ $data->tanggal_masuk }}"
+                                                value="{{ $data->tanggal_keluar }}"
                                                 data-val="true"
                                                 data-val-required="Please enter the card expiration"
                                                 data-val-cc-exp="Please enter a valid month and year"
@@ -118,7 +119,7 @@
                                             <span class="help-block" data-valmsg-for="cc-exp"
                                                 data-valmsg-replace="true"></span>
                                         </div>
-                                        
+
                                         <div>
                                             <button id="payment-button" type="submit"
                                                 class="btn btn-lg btn-info btn-block">
@@ -126,7 +127,7 @@
                                                 <span id="payment-button-amount">SUBMIT</span>
                                                 <span id="payment-button-sending" style="display:none;">Sending…</span>
                                             </button>
-                                            <a href="/inventory" class="btn btn-secondary btn-lg btn-block">CANCEL</a>
+                                            <a href="/inventorykeluar" class="btn btn-secondary btn-lg btn-block">CANCEL</a>
                                         </div>
                                 </form>
                             </div>

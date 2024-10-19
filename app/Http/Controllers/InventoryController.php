@@ -10,40 +10,17 @@ use Carbon\Carbon;
 
 class InventoryController extends Controller
 {
-    public function index(Request $request){
 
+    public function barangMasuk(Request $request)
+    {
         $gud = Gudang::all();
-
         $query = Inventory::with('gudang')->latest();
 
-        //search
-        if ($request->has('search')) {
-            $query->where('namabarang', 'LIKE', "%" .$request->search. '%');
-        }
-
-        // if ($request->has('tanggal_masuk')) {
-        //     $query->whereDate('tanggal_masuk', $request->tanggal_masuk);
-        // }
-
-        //filter
-        if ($request->has('gudang')) {
-            $query->where('gudang_inv', $request->gudang);
-        }
-
-        //pagination
-        $data = $query->paginate(5);
-
-        return view('inventory', compact(['data', 'gud']));
-    }
-
-    public function indexx(Request $request){
-
-        $gud = Gudang::all();
-
-        $query = Inventory::with('gudang')->latest();
+        // Barang yang berstatus 'masuk'
+        $query->where('status', 'masuk');
 
         if ($request->has('search')) {
-            $query->where('namabarang', 'LIKE', "%" .$request->search. '%');
+            $query->where('namabarang', 'LIKE', "%" . $request->search . '%');
         }
 
         if ($request->has('gudang')) {
@@ -52,8 +29,85 @@ class InventoryController extends Controller
 
         $data = $query->paginate(5);
 
-        return view('inv', compact(['data', 'gud']));
+         return view('inventory', compact(['data', 'gud']));
     }
+
+    public function invMasuk(Request $request)
+    {
+        $gud = Gudang::all();
+        $query = Inventory::with('gudang')->latest();
+
+        // Barang yang berstatus 'masuk'
+        $query->where('status', 'masuk');
+
+        if ($request->has('search')) {
+            $query->where('namabarang', 'LIKE', "%" . $request->search . '%');
+        }
+
+        if ($request->has('gudang')) {
+            $query->where('gudang_inv', $request->gudang);
+        }
+
+        $data = $query->paginate(5);
+
+         return view('inv', compact(['data', 'gud']));
+    }
+
+    public function barangKeluar(Request $request)
+    {
+        $gud = Gudang::all();
+        $query = Inventory::with('gudang')->latest();
+
+         // Barang yang berstatus 'keluar'
+         $query->where('status', 'keluar');
+
+         if ($request->has('search')) {
+             $query->where('namabarang', 'LIKE', "%" . $request->search . '%');
+         }
+
+         if ($request->has('gudang')) {
+             $query->where('gudang_inv', $request->gudang);
+         }
+
+         $data = $query->paginate(5);
+
+         return view('inventorykeluar', compact(['data', 'gud']));
+    }
+
+    public function invKeluar(Request $request)
+    {
+        $gud = Gudang::all();
+        $query = Inventory::with('gudang')->latest();
+
+         // Barang yang berstatus 'keluar'
+         $query->where('status', 'keluar');
+
+         if ($request->has('search')) {
+             $query->where('namabarang', 'LIKE', "%" . $request->search . '%');
+         }
+
+         if ($request->has('gudang')) {
+             $query->where('gudang_inv', $request->gudang);
+         }
+
+         $data = $query->paginate(5);
+
+         return view('invkeluar', compact(['data', 'gud']));
+    }
+
+    public function keluarkanBarang($id)
+    {
+         $data = Inventory::find($id);
+
+    if ($data && $data->status == 'masuk') {
+        $data->status = 'keluar';
+        $data->tanggal_keluar = now();
+        $data->save();
+            return redirect()->route('barangMasuk')->with('toast_success', 'Barang berhasil dikeluarkan!');
+        }
+        return redirect()->route('barangMasuk')->with('toast_error', 'Barang tidak ditemukan!');
+    }
+
     public function tambahdata(){
 
         $gud = Gudang::all();
@@ -68,7 +122,6 @@ class InventoryController extends Controller
             'namapic' => 'required|regex:/^[a-zA-Z\s]+$/',
             'kontakpic' => 'required',
             'tanggal_masuk' => 'required',
-            'tanggal_keluar' => 'required',
         ], [
             // 'required' => 'Kolom :attribute wajib diisi.',
                 'namabarang.required' => 'Nama Barang harus diisi!',
@@ -77,7 +130,7 @@ class InventoryController extends Controller
                 'namapic.required' => 'Gudang harus diisi!',
                 'kontakpic.required' => 'Kontak PIC harus diisi!',
                 'tanggal_masuk.required' => 'Tanggal Masuk harus diisi!',
-                'tanggal_keluar.required' => 'Tanggal Keluar harus diisi!',
+                'tanggal_masuk.date' => 'Tanggal Masuk harus berupa tanggal yang valid!',
 
                 'max' => [
                     'string' => 'Kolom :attribute tidak boleh lebih dari :max karakter.',
@@ -85,8 +138,19 @@ class InventoryController extends Controller
                 'namapic.regex' => 'Nama PIC hanya boleh berisi huruf.', // Pesan kesalahan kustom
         ]);
 
+         // Menambahkan data baru dengan status 'masuk'
+        // Inventory::create([
+        // 'namabarang' => $request->namabarang,
+        // 'gudang_inv' => $request->gudang_inv,
+        // 'namapic' => $request->namapic,
+        // 'kontakpic' => $request->kontakpic,
+        // 'tanggal_masuk' => $request->tanggal_masuk,
+        // 'status' => 'masuk',
+        // 'tanggal_keluar' => null,
+        // ]);
+
         Inventory::create($request->all());
-        return redirect()->route('inv')->with('toast_success', 'Data Berhasil Di Tambahkan!');
+        return redirect()->route('invmasuk')->with('toast_success', 'Data Berhasil Di Tambahkan!');
     }
 
     public function editdata($id){
@@ -96,6 +160,13 @@ class InventoryController extends Controller
         return view('editdata',compact('data', 'gud'));
     }
 
+    public function editdataKeluar($id){
+        $gud = Gudang::all();
+        $data = Inventory::with('gudang')->find($id);
+        // dd($data);
+        return view('editdatakeluar',compact('data', 'gud'));
+    }
+
     public function updatedata(Request $request, $id){
 
         $this->validate($request, [
@@ -103,7 +174,7 @@ class InventoryController extends Controller
             'namapic' => 'required|regex:/^[a-zA-Z\s]+$/',
             'kontakpic' => 'required',
             'tanggal_masuk' => 'required',
-            'tanggal_keluar' => 'required',
+            // 'tanggal_keluar' => 'required|date',
         ],[
             // 'required' => 'Kolom :attribute wajib diisi.',
             'max' => [
@@ -113,15 +184,43 @@ class InventoryController extends Controller
             'namapic.required' => 'Nama Barang harus diisi!',
             'kontakpic.required' => 'Kontak PIC harus diisi!',
             'tanggal_masuk.required' => 'Tanggal Masuk harus diisi!',
-            'tanggal_keluar.required' => 'Tanggal Keluar harus diisi!',
             'namapic.regex' => 'Nama PIC hanya boleh berisi huruf dan spasi.',
         ]);
         $data = Inventory::find($id);
+
+        if (!$data) {
+            return redirect()->route('inventory')->with('toast_error', 'Data tidak ditemukan');
+        }
+
         $data->update($request -> all());
-
-        // $gud = Gudang::find($request->gudang_inv);
-
         return redirect()->route('inventory')->with('toast_success', 'Data Berhasil Update');
+    }
+
+    public function updatedataKeluar(Request $request, $id)
+    {
+        $this->validate($request, [
+            'namabarang' => 'required',
+            'namapic' => 'required|regex:/^[a-zA-Z\s]+$/',
+            'kontakpic' => 'required',
+            'tanggal_keluar' => 'required|date|after_or_equal:tanggal_masuk',
+        ], [
+            'namabarang.required' => 'Nama Barang harus diisi!',
+            'namapic.required' => 'Nama PIC harus diisi!',
+            'kontakpic.required' => 'Kontak PIC harus diisi!',
+            'tanggal_keluar.required' => 'Tanggal Keluar harus diisi!',
+            'namapic.regex' => 'Nama PIC hanya boleh berisi huruf dan spasi.',
+            'tanggal_keluar.after_or_equal' => 'Tanggal Keluar harus setelah atau sama dengan Tanggal Masuk.',
+        ]);
+
+        $data = Inventory::find($id);
+
+        if (!$data) {
+            return redirect()->route('inventorykeluar')->with('toast_error', 'Data tidak ditemukan');
+        }
+
+        $data->update($request->all());
+
+        return redirect()->route('inventorykeluar')->with('toast_success', 'Data Berhasil Diupdate');
     }
 
     public function deletedata($id){

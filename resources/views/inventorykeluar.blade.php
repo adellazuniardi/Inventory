@@ -5,7 +5,7 @@
         <div class="col-sm-4">
             <div class="page-header float-left">
                 <div class="page-title">
-                    <h1 class="text-center">TRANSAKSI BARANG MASUK</h1>
+                    <h1 class="text-center">TRANSAKSI BARANG KELUAR</h1>
                 </div>
             </div>
         </div>
@@ -26,13 +26,13 @@
             <div class="container">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="text-center">Data Barang Masuk</h3>
+                        <h3 class="text-center">Data Barang Keluar</h3>
                     </div>
                     @csrf
                     <div class="card-body">
                         <div class="row mb-2 ml-0">
                             <div class="col-auto">
-                                <form action="{{ route('barangMasuk') }}" method="GET">
+                                <form action="{{ route('barangKeluar') }}" method="GET">
                                     <div class="form-group row">
                                         {{-- <label for="Filter" class="col-md-2 col-form-label text-md-right">Gudang</label> --}}
                                         <div class="col-auto">
@@ -46,14 +46,14 @@
                                             </select>
                                         </div>
                                         <button type="submit" class="btn btn-info mr-1 rounded">Filter</button>
-                                        <a href="{{ route('barangMasuk') }}" class="btn btn-secondary rounded">Reset</a>
+                                        <a href="{{ route('barangKeluar') }}" class="btn btn-secondary rounded">Reset</a>
                                     </div>
                                 </form>
                             </div>
 
                             <div class="col-auto">
                                 <div class="form-group">
-                                    <form action="/barangMasuk" method="get">
+                                    <form action="/barangKeluar" method="get">
                                         <div class="input-group">
                                             <input type="search" class="form-control" name="search" id=""
                                                 placeholder="Cari Barang">
@@ -76,10 +76,10 @@
                                             <th scope="col">#</th>
                                             <th scope="col">Nama Barang</th>
                                             <th scope="col">Gudang</th>
-                                            <th scope="col">Tanggal Masuk</th>
+                                            <th scope="col">Tanggal Keluar</th>
                                             <th scope="col">Nama PIC</th>
                                             <th scope="col">Kontak PIC</th>
-                                            <th colspan="2">Aksi</th>
+                                            <th scope="col">Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -91,17 +91,11 @@
                                                 <th scope="row">{{ $index + $data->firstItem() }}</th>
                                                 <td>{{ $row->namabarang }}</td>
                                                 <td>{{ $row->gudang->gudang }}</td>
-                                                <td>{{ \Carbon\Carbon::parse($row->tanggal_masuk)->format('d/m/Y') }}</td>
+                                                <td>{{ \Carbon\Carbon::parse($row->tanggal_keluar)->format('d/m/Y') }}</td>
                                                 <td>{{ $row->namapic }}</td>
                                                 <td>0{{ $row->kontakpic }}</td>
                                                 <td>
-                                                    <form action="{{ route('keluarkanBarang', $row->id) }}" method="POST">
-                                                        @csrf
-                                                        <button type="submit" class="btn btn-info btn-sm rounded">Keluarkan</button>
-                                                    </form>
-                                                </td>
-                                                <td>
-                                                    <a href="/editdata/{{ $row->id }}"
+                                                    <a href="/editdatakeluar/{{ $row->id }}"
                                                         class="btn btn-primary btn-sm rounded">Edit</a>
                                                     <button onclick="confirmDelete('{{ route('deletedata', $row->id) }}')"
                                                         class="btn btn-danger btn-sm rounded">Delete</button>
